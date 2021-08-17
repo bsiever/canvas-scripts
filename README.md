@@ -65,3 +65,7 @@ Assignment items have three types of dates:
 3. Use `putCourseSchedule.py` to post the changes.  Give the .json file to use as the first command line argument.  (Ex: `./putCourseSchedule.py newSemester.json`).  
 4. Check your calendar / course stream to quickly spot any problems.
 5. If you were working from the beta instance and are happy with the results, update the `API_URL` and re-run the script to push to the production instance.
+
+# Getting Emails
+
+`getStudentEmailsForPiazza.py` will get a list of all email addresses from Canvas (handy for merged sections).  This can be an easy way to pull emails and update external tools, like Piazza (I use Piazza's drop/add feature with this list).  I usually run like: `./getStudentEmailsForPiazza.py | tee TODAYS_ROLL.txt`.
