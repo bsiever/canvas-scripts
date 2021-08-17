@@ -18,7 +18,7 @@ Update the three scripts, `getCourseSchedule.py`, `putCourseSchedule.py`, and `g
    * `COURSE_ID` A course/offering specific ID (changes for each course each semester). **BE SURE TO UPDATE THIS IMMEDIATELY FOR EACH SEMESTER** (You don't want to accidentally update values for the prior offering of the course)
    * `API_URL`: The URL of the Canvas server to use.  I usually test things on the "beta" version of Canvas first and then update this for the production version.  The Beta version is not visible to students and is overwritten by the live version on weekends.  Test things on the first few uses by trying them out on beta.  
    * `API_KEY`:  An API key (this can be the same for every course --- when you create it you can specify an expiration date).  Be sure to never share this or expose it.  Do NOT ever add updates to `CanvasSettings.py` to a git commit/etc. (It's added to `.gitignore` to help avoid this).  This doesn't need to be changed every semester.
-3. Setup initial course shell in Canvas (probably by copying over all data from a prior instance of the course and maybe merging/[cross-isting](https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-cross-list-a-section-in-a-course-as-an-instructor/ta-p/1261) multiple sections into a single course shell).
+3. Setup initial course shell in Canvas (probably by copying over all data from a prior instance of the course and maybe merging/[cross-listing](https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-cross-list-a-section-in-a-course-as-an-instructor/ta-p/1261) multiple sections into a single course shell).
 4. Run `getCourseSchedule.py` script, which will get all dates and dump them into a .json file (the output file can be given as a command line argument or, if no are, it defaults to stdout) I like to watch it work, so I usually do: `./getCourseSchedule.py | tee schedule.json​`.  This step can be repeated each semester if there are significant changes to the course structure (changes to number/types of assignments or names used for assignments or pages with to-do times). 
 5. Edit / rearrange the resulting JSON.  It's not usually in the order of course content, so I juggle it a bit and update expected dates.  
 
@@ -43,9 +43,10 @@ Here's an example of what the JSON file may look like.  *Comments (`#`) are not 
     },
     # The "page todo dates" group can be used to indicate a page/item that should be reviewed by a particular date/time (it adds non-graded items to students Canvas calendar and to-do list)
     "page todo dates": {
-        "Week 1 Reading": "2021-01-26 23:52:00",
+        "Week 1 Reading": "2021-01-26 23:52:00",   # The exact page name and corresponding due date
         ...
-        "Week N Pre-class Video": "2021-01-31 23:54:00"
+        "Week N Pre-class Video": "2021-01-31 23:54:00",
+        "Info Only: null
     }
 }
 ```
