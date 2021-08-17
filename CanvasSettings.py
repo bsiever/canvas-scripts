@@ -1,5 +1,4 @@
 
-
 ###### COURSE_ID
 # Get the course ID to update
 # 1. Open course in Canvas
