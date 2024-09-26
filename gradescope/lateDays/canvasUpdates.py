@@ -3,6 +3,15 @@
 from canvasapi import Canvas
 from CanvasSettings import *
 
+
+def removeSubmissionLate(studentCanvasID, assignment):
+    # Unit of amount is "seconds", but Canvas shows days.  Multiply by 86400 and round
+    # Set submission[late_policy_status] = “late”, “missing”, “none”, or null.
+    submission = assignment.get_submission(studentCanvasID)
+    data = {"late_policy_status":"none", "posted_grade":submission.entered_grade}
+    submission.edit(submission=data)
+
+
 def updateSubmissionLate(studentCanvasID, assignment, status, amount=0, comment=None):
     # Unit of amount is "seconds", but Canvas shows days.  Multiply by 86400 and round
     # Set submission[late_policy_status] = “late”, “missing”, “none”, or null.
